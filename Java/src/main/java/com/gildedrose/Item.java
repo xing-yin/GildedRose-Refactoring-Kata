@@ -3,15 +3,29 @@ package com.gildedrose;
 public class Item {
 
   public String name;
-
   public int sellIn;
-
   public int quality;
 
-  public Item(String name, int sellIn, int quality) {
+  private Item(String name, int sellIn, int quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+  }
+
+  public static Item createBackstage(int sellIn, int quality) {
+    return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+  }
+
+  public static Item createAgedBrie(int sellIn, int quality) {
+    return new Item("Aged Brie", sellIn, quality);
+  }
+
+  public static Item createSulfuras(int sellIn, int quality) {
+    return new Item("Sulfuras, Hand of Ragnaros", sellIn, quality);
+  }
+
+  public static Item createNormalItem(String name, int sellIn, int quality) {
+    return new Item(name, sellIn, quality);
   }
 
   void passOneDay() {

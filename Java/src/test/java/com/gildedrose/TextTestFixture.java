@@ -1,5 +1,10 @@
 package com.gildedrose;
 
+import static com.gildedrose.Item.createAgedBrie;
+import static com.gildedrose.Item.createBackstage;
+import static com.gildedrose.Item.createNormalItem;
+import static com.gildedrose.Item.createSulfuras;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -16,16 +21,16 @@ public class TextTestFixture {
     printStream.println("OMGHAI!");
 
     Item[] items = new Item[]{
-        new Item("+5 Dexterity Vest", 10, 20), //
-        new Item("Aged Brie", 2, 0), //
-        new Item("Elixir of the Mongoose", 5, 7), //
-        new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-        new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+        createNormalItem("+5 Dexterity Vest", 10, 20), //
+        createAgedBrie(2, 0), //
+        createNormalItem("Elixir of the Mongoose", 5, 7), //
+        createSulfuras(0, 80), //
+        createSulfuras(-1, 80),
+        createBackstage(15, 20),
+        createBackstage(10, 49),
+        createBackstage(5, 49),
         // this conjured item does not work properly yet
-        new Item("Conjured Mana Cake", 3, 6)};
+        createNormalItem("Conjured Mana Cake", 3, 6)};
 
     GildedRose app = new GildedRose(items);
 
