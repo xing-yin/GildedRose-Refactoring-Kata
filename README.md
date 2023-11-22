@@ -4,60 +4,37 @@ You can find out more about this exercise in my YouTube video [Why Developers LO
 
 I use this kata as part of my work as a technical coach. I wrote a lot about the coaching method I use in this book [Technical Agile Coaching with the Samman method](https://leanpub.com/techagilecoach). A while back I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
 
+## GildedRoseRequirements_zh
 
-## How to use this Kata
-
-The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.txt) which explains what the code is for. I strongly advise you that you'll also need some tests if you want to make sure you don't break the code while you refactor.
-
-You could write some unit tests yourself, using the requirements to identify suitable test cases. I've provided a failing unit test in a popular test framework as a starting point for most languages.
-
-Alternatively, use the Approval tests provided in this repository. (Read more about that in the section "Text-based Approval Testing").
-
-The idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice taking small steps, running the tests often, and incrementally improving the design. 
-
-Please don't send me a pull request with your solution. It can be a bit confusing since GitHub encourages you to do so! Please only send me pull requests if you have a correction or improvement to the starting position. You don't want to spoil the fun of doing the exercise for other people!
+======================================
+Gilded Rose 需求描述
+======================================
 
 
-### Gilded Rose Requirements in other languages 
+欢迎来到镶金玫瑰(Gilded Rose)团队。如你所知，我们是主城（暴风城）中的一个小旅店，店主非常友好，名叫Allison。我们也售卖最好的物品。不幸的是，物品品质会随着销售期限的接近而不断下降。
+我们有一个系统来更新库存信息。系统是由一个火车王（魔兽世界中导致团灭的猪队友）Leeroy所开发的，他已经不在这了。
+你的任务是添加新功能，这样我们就可以售卖新的物品。
 
-- [English](GildedRoseRequirements.txt)
-- [Español](GildedRoseRequirements_es.md)
-- [Français](GildedRoseRequirements_fr.md)
-- [Italiano](GildedRoseRequirements_it.md)
-- [日本語](GildedRoseRequirements_jp.md)
-- [Português](GildedRoseRequirements_pt-BR.md)
-- [Русский](GildedRoseRequirements_ru.txt)
-- [ไทย](GildedRoseRequirements_th.md)
-- [中文](GildedRoseRequirements_zh.txt)
-- [한국어](GildedRoseRequirements_kr.md)
-- [German](GildedRoseRequirements_de.md)
-- [Euskara](GildedRoseRequirements_eu.md)
+先介绍一下我们的系统：
 
-## Text-Based Approval Testing
+	- 每种物品都具备一个销售期限`SellIn`，表示我们要在多少天之前把物品卖出去
+	- 每种的物品都具备品质值`Quality`，表示物品的品质
+	- 每天结束时，系统会降低每种物品的这两个数值
 
-Most language versions of this code have a [TextTest](https://texttest.org) fixture for Approval testing. For information about this, see the [TextTests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main/texttests)
+很简单吧？这还有些更有意思的：
 
-## History of the exercise
+	- 一旦销售期限过期，品质`Quality`会以双倍速度加速下降
+	- 物品的品质`Quality`永远不会为负值
+	- "Aged Brie"（陈年布利奶酪）的品质`Quality`会随着时间推移而提高
+	- 物品的品质`Quality`永远不会超过50
+	- 传奇物品"Sulfuras"（萨弗拉斯—炎魔拉格纳罗斯之手）永不过期，也不会降低品质`Quality`
+	- "Backstage passes"（后台通行证）与"Aged Brie"（陈年布利奶酪）类似，其品质`Quality`会随着时间推移而提高；当还剩10天或更少的时候，品质`Quality`每天提高2；当还剩5天或更少的时候，品质`Quality`每天提高3；但一旦过期，品质就会降为0
 
-This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](https://iamnotmyself.com/refactor-this-the-gilded-rose-kata/).
 
-I translated the original C# into a few other languages, (with a little help from my friends!), and slightly changed the starting position. This means I've actually done a small amount of refactoring already compared with the original form of the kata, and made it easier to get going with writing tests by giving you one failing unit test to start with. I also added test fixtures for Text-Based approval testing with TextTest (see [the TextTests](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main/texttests))
+我们最近签约了一个召唤物品供应商。这需要对我们的系统进行升级：
 
-As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose Miss The Bigger Picture"](https://iamnotmyself.com/why-most-solutions-to-gilded-rose-miss-the-bigger-picture/), it'll actually give you
-better practice at handling a legacy code situation if you do this Kata in the original C#. However, I think this kata
-is also really useful for practicing writing good tests using different frameworks and approaches, and the small changes I've made help with that. I think it's also interesting to compare what the refactored code and tests look like in different programming languages.
+	- "Conjured"（召唤物品）的品质`Quality`下降速度比正常物品快一倍
 
-## Translating this code
+请随意对**UpdateQuality()**函数进行修改和添加新代码，只要系统还能正常工作。然而，不要修改Item类或其属性，因为那属于角落里的地精，他会非常愤怒地爆你头，因为他不相信代码共享所有制（如果你愿意，你可以将UpdateQuality方法和Items属性改为静态的，我们会掩护你的）。
 
-More translations are most welcome! I'm very open for pull requests that translate the starting position into additional languages. 
-
-Please note a translation should ideally include:
-
-- a translation of the production code for 'update_quality' and Item
-- one failing unit test complaining that "fixme" != "foo"
-- a TextTest fixture, ie a command-line program that runs update_quality on the sample data for the number of days specified.
-
-Please don't write too much code in the starting position or add too many unit tests. The idea with the one failing unit test is to tempt people to work out how to fix it, discover it wasn't that hard, and now they understand what this test is doing they realize they can improve it.  
-
-If your programming language doesn't have an easy way to add a command-line interface, then the TextTest fixture is probably not necessary.
-
+再次澄清，每种物品的品质不会超过50，然而"Sulfuras"（萨弗拉斯—炎魔拉格纳罗斯之手）是一个传奇物品，因此它的品质是80且永远不变。
