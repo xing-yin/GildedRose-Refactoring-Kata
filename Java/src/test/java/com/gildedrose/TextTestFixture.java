@@ -38,7 +38,7 @@ public class TextTestFixture {
         printStream.println(item);
       }
       printStream.println();
-      app.updateQuality();
+      app.passOneDay();
     }
 
     // 系统的baseline

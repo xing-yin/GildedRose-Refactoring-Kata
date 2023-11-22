@@ -1,8 +1,7 @@
 package com.gildedrose;
 
 /**
- * 重构要点：
- * 口诀：旧的不变，新的创建，一步切换，旧的再见
+ * 重构要点： 口诀：旧的不变，新的创建，一步切换，旧的再见
  * <p>
  * - 每次有一小步的代码变更，立即运行测试（每步可控）
  * <p>
@@ -17,55 +16,9 @@ class GildedRose {
     this.items = items;
   }
 
-  public void updateQuality() {
+  public void passOneDay() {
     for (Item item : items) {
-      if (!item.isAgedBrie() && !item.isBackstage()) {
-        if (item.quality > 0) {
-          if (!item.isSulfuras()) {
-            item.quality = item.quality - 1;
-          }
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
-
-          if (item.isBackstage()) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-          }
-        }
-      }
-
-      if (!item.isSulfuras()) {
-        item.sellIn = item.sellIn - 1;
-      }
-
-      if (item.sellIn < 0) {
-        if (!item.isAgedBrie()) {
-          if (!item.isBackstage()) {
-            if (item.quality > 0) {
-              if (!item.isSulfuras()) {
-                item.quality = item.quality - 1;
-              }
-            }
-          } else {
-            item.quality = 0;
-          }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
+      item.passOneDay();
     }
   }
 
