@@ -16,16 +16,11 @@ public class AgedBrie extends Item {
 
   @Override
   protected void updateQualityAfterExpiration() {
-    if (this.quality < 50) {
-      this.quality = this.quality + 1;
-    }
+    increaseQuality();
   }
 
   @Override
   protected void updateQuality() {
-    if (this.quality >= 50) {
-      return;
-    }
-    this.quality = this.quality + 1;
+    increaseQuality();
   }
 }

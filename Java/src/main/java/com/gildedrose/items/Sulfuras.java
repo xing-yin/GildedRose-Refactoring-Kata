@@ -16,7 +16,7 @@ public class Sulfuras extends Item {
 
   @Override
   protected void updateSellInDays() {
-    // if is Sulfuras,do nothing,override default logic
+    // do nothing,override default logic
   }
 
   @Override

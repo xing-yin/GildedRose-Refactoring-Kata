@@ -21,21 +21,15 @@ public class Backstage extends Item {
 
   @Override
   protected void updateQuality() {
-    if (this.quality >= 50) {
-      return;
-    }
-    this.quality = this.quality + 1;
+    increaseQuality();
 
     if (this.sellIn < 10) {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-      }
+      increaseQuality();
     }
 
     if (this.sellIn < 5) {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-      }
+      increaseQuality();
     }
   }
+
 }
