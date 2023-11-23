@@ -6,26 +6,10 @@ public class Item {
   public int sellIn;
   public int quality;
 
-  private Item(String name, int sellIn, int quality) {
+  protected Item(String name, int sellIn, int quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-  }
-
-  public static Item createBackstage(int sellIn, int quality) {
-    return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
-  }
-
-  public static Item createAgedBrie(int sellIn, int quality) {
-    return new Item("Aged Brie", sellIn, quality);
-  }
-
-  public static Item createSulfuras(int sellIn, int quality) {
-    return new Item("Sulfuras, Hand of Ragnaros", sellIn, quality);
-  }
-
-  public static Item createNormalItem(String name, int sellIn, int quality) {
-    return new Item(name, sellIn, quality);
   }
 
   void passOneDay() {
@@ -101,15 +85,15 @@ public class Item {
 
   // 该行为与 Item 有关，应该放入 Item (内聚，属于 Item 的领域对象)；符合迪米特法则
   public boolean isBackstage() {
-    return name.equals("Backstage passes to a TAFKAL80ETC concert");
+    return false;
   }
 
   public boolean isSulfuras() {
-    return this.name.equals("Sulfuras, Hand of Ragnaros");
+    return false;
   }
 
   public boolean isAgedBrie() {
-    return this.name.equals("Aged Brie");
+    return false;
   }
 
 }
