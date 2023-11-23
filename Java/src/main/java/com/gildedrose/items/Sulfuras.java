@@ -18,4 +18,9 @@ public class Sulfuras extends Item {
   public boolean isSulfuras() {
     return true;
   }
+
+  @Override
+  protected void updateSellInDays() {
+    // if is Sulfuras,do nothing,override default logic
+  }
 }

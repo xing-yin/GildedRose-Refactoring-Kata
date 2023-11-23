@@ -72,10 +72,9 @@ public class Item {
     return this.sellIn < 0;
   }
 
-  private void updateSellInDays() {
-    if (!isSulfuras()) {
-      this.sellIn = this.sellIn - 1;
-    }
+  // 重构 if,用卫语句，尽早返回
+  protected void updateSellInDays() {
+    this.sellIn = this.sellIn - 1;
   }
 
   @Override
