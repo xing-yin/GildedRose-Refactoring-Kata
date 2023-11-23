@@ -22,50 +22,17 @@ public class Item {
     }
   }
 
-  private void updateQuality() {
-    if (!isAgedBrie() && !isBackstage()) {
-      if (this.quality > 0) {
-        if (!isSulfuras()) {
-          this.quality = this.quality - 1;
-        }
-      }
-    } else {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-
-        if (isBackstage()) {
-          if (this.sellIn < 10) {
-            if (this.quality < 50) {
-              this.quality = this.quality + 1;
-            }
-          }
-
-          if (this.sellIn < 5) {
-            if (this.quality < 50) {
-              this.quality = this.quality + 1;
-            }
-          }
-        }
-      }
+  protected void updateQuality() {
+    if (this.quality > 0) {
+      this.quality = this.quality - 1;
     }
   }
 
-  private void updateQualityAfterExpiration() {
-    if (!isAgedBrie()) {
-      if (!isBackstage()) {
-        if (this.quality > 0) {
-          if (!isSulfuras()) {
-            this.quality = this.quality - 1;
-          }
-        }
-      } else {
-        this.quality = 0;
-      }
-    } else {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-      }
-    }
+  /**
+   * 1.使用卫语句简化代码嵌套 2.将对应不同类型逻辑放入子类
+   */
+  protected void updateQualityAfterExpiration() {
+    this.updateQuality();
   }
 
   private boolean isExpired() {
@@ -80,19 +47,6 @@ public class Item {
   @Override
   public String toString() {
     return this.name + ", " + this.sellIn + ", " + this.quality;
-  }
-
-  // 该行为与 Item 有关，应该放入 Item (内聚，属于 Item 的领域对象)；符合迪米特法则
-  public boolean isBackstage() {
-    return false;
-  }
-
-  public boolean isSulfuras() {
-    return false;
-  }
-
-  public boolean isAgedBrie() {
-    return false;
   }
 
 }

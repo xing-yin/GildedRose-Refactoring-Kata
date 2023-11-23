@@ -15,7 +15,27 @@ public class Backstage extends Item {
   }
 
   @Override
-  public boolean isBackstage() {
-    return true;
+  protected void updateQualityAfterExpiration() {
+    this.quality = 0;
+  }
+
+  @Override
+  protected void updateQuality() {
+    if (this.quality >= 50) {
+      return;
+    }
+    this.quality = this.quality + 1;
+
+    if (this.sellIn < 10) {
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
+      }
+    }
+
+    if (this.sellIn < 5) {
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
+      }
+    }
   }
 }

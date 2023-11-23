@@ -15,12 +15,16 @@ public class Sulfuras extends Item {
   }
 
   @Override
-  public boolean isSulfuras() {
-    return true;
+  protected void updateSellInDays() {
+    // if is Sulfuras,do nothing,override default logic
   }
 
   @Override
-  protected void updateSellInDays() {
-    // if is Sulfuras,do nothing,override default logic
+  protected void updateQualityAfterExpiration() {
+  }
+
+  @Override
+  protected void updateQuality() {
+
   }
 }

@@ -7,7 +7,7 @@ package com.gildedrose;
  * <p>
  * - 重构时遇到失败，不要尝试修复，先回退到上次成功的位置
  * <p>
- * - 重构 if,用卫语句，尽早返回
+ * - 重构 if,用卫语句，尽早返回(用卫语句简化代码嵌套)
  */
 
 class GildedRose {
